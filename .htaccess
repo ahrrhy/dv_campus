@@ -137,12 +137,18 @@
 
 <IfModule mod_rewrite.c>
 
+
 ############################################
 ## enable rewrites
 
     Options +FollowSymLinks
     RewriteEngine on
 
+    SetEnvIf Host .*my-website.local.* MAGE_RUN_CODE=base
+    SetEnvIf Host .*my-website.local.* MAGE_RUN_TYPE=website
+
+    SetEnvIf Host .*reseller.local.* MAGE_RUN_CODE=reseller
+    SetEnvIf Host .*reseller.local.* MAGE_RUN_TYPE=website
 ############################################
 ## you can put here your magento root folder
 ## path relative to web root
