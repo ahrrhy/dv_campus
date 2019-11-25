@@ -7,7 +7,7 @@
 @navigation-level0-item__color: @color-white;
 @navigation-level0-item__hover__color: @color-light-red;
 @navigation-level0-item__active__color: @color-orange-red1;
-@submenu-item__color: @color-blue1;
+@submenu-item__color: @color-white;
 @submenu-item__hover__background: @color-dark-blue;
 
 @navigation-desktop-level0-item__color: @color-white;
@@ -23,6 +23,8 @@
 @link__visited__color: @color-orange-red1;
 @link__hover__color: @color-orange-red1;
 @footer-links-color: @color-white;
+@footer-links-color-hover: @color-white;
+@footer-links-color-current: @color-light-red;
 
 @message-success__background: @color-dark-blue;
 @message-success-icon__background: @color-dark-blue;
@@ -46,6 +48,7 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
   .product.data.items {
     .lib-data-tabs(
       @_tab-control-font-family: @tab-control__font-family,
