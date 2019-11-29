@@ -1,0 +1,11 @@
+& when (@media-common = true) {
+  .subscribe-title {
+    color: @color-blue3;
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .subscribe-title {
+    color: @color-white;
+  }
+}
