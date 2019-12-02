@@ -13,7 +13,7 @@ use Magento\Framework\Controller\Result\ForwardFactory;
 class Forward extends \Magento\Framework\App\Action\Action
 {
     /** @var array */
-    const DATA = [
+    private const DATA = [
         'firstName' => 'Stanislav',
         'lastName' => 'Zhuravel',
         'githubRepository' => 'https://github.com/ahrrhy/dv_campus'
