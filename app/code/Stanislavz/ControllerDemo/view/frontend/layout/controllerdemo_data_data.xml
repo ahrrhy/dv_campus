@@ -5,6 +5,7 @@
         <referenceContainer name="content">
             <block class="Stanislavz\ControllerDemo\Block\ProcessParameters"
                    template="Stanislavz_ControllerDemo::forward_page.phtml"
+                   name="repository.data"
             />
         </referenceContainer>
     </body>
