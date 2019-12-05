@@ -32,7 +32,8 @@ class ProcessParameters extends \Magento\Framework\View\Element\Template
      */
     public function getName(): string
     {
-        return $this->requestParams['firstName'] . ' ' . $this->requestParams['lastName'];
+        return ($this->requestParams['firstName'] . ' ' . $this->requestParams['lastName'])
+            ?: 'Here should be some name';
     }
 
     /**
@@ -40,6 +41,6 @@ class ProcessParameters extends \Magento\Framework\View\Element\Template
      */
     public function getRepository(): string
     {
-        return $this->requestParams['githubRepository'];
+        return $this->requestParams['githubRepository'] ?: 'Here should be some link';
     }
 }
