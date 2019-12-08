@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Stanislavz\ControllerDemo\Controller\Redirect;
+namespace Stanislavz\ControllerDemo\Controller\Forward;
 
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\Result\ForwardFactory;

@@ -5,7 +5,7 @@
             <block class="Magento\Framework\View\Element\Html\Link\Current" name="custom-footer-link">
                 <arguments>
                     <argument name="label" xsi:type="string">Show Module Information</argument>
-                    <argument name="path" xsi:type="string">controllerdemo/redirect/forward</argument>
+                    <argument name="path" xsi:type="string">controllerdemo/forward/forward</argument>
                 </arguments>
             </block>
         </referenceBlock>

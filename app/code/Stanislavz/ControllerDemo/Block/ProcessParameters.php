@@ -12,11 +12,6 @@ use Magento\Framework\View\Element\Template;
 class ProcessParameters extends \Magento\Framework\View\Element\Template
 {
     /**
-     * @var array
-     */
-    private $requestParams;
-
-    /**
      * ProcessParameters constructor.
      * @param Template\Context $context
      * @param array $data
@@ -24,7 +19,6 @@ class ProcessParameters extends \Magento\Framework\View\Element\Template
     public function __construct(Template\Context $context, array $data = [])
     {
         parent::__construct($context, $data);
-        $this->requestParams = $this->getRequest()->getParams();
     }
 
     /**
@@ -32,7 +26,7 @@ class ProcessParameters extends \Magento\Framework\View\Element\Template
      */
     public function getName(): string
     {
-        return ($this->requestParams['firstName'] . ' ' . $this->requestParams['lastName'])
+        return ($this->_request->getParam('firstName') . ' ' . $this->_request->getParam('lastName'))
             ?: 'Here should be some name';
     }
 
@@ -41,6 +35,6 @@ class ProcessParameters extends \Magento\Framework\View\Element\Template
      */
     public function getRepository(): string
     {
-        return $this->requestParams['githubRepository'] ?: 'Here should be some link';
+        return $this->_request->getParam('githubRepository') ?: 'Here should be some link';
     }
 }
