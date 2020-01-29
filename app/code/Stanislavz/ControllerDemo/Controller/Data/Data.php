@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Stanislavz\ControllerDemo\Controller\Data;
 
-use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\App\Action\Context;
 
 /**
  * Class Data

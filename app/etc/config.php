@@ -246,6 +246,7 @@ return [
         'Stanislavz_Cms' => 1,
         'Stanislavz_ControllerDemo' => 1,
         'Temando_Shipping' => 1,
+        'Trafag_PostTypes' => 1,
         'Vertex_Tax' => 1,
         'Yotpo_Yotpo' => 1
     ]
