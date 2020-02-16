@@ -1,3 +1,14 @@
+.chat-clearfix() {
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
 & when (@media-common = true) {
   button.chat-initial {
     transition: all ease .3s;
@@ -6,13 +17,42 @@
     margin: 10px 0 0 20px;
     float: left;
     font-size: 1em;
-    &:before,
-    &:after {
-      content: '';
-      display: table;
-    }
-    &:after {
-      clear: both;
+    .chat-clearfix();
+  }
+
+  .modal-content.chat-wrapper {
+    z-index: 3;
+    overflow-y: scroll;
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 10px;
+    background-color: @color-white;
+    min-height: 200px;
+    #chat-form {
+      align-self: flex-end;
+      order: 99;
+      width: 100%;
+      .control {
+        position: relative;
+      }
+      label[for="customer_message"] {
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        transition: all ease .3s;
+      }
+      #customer_message {
+        resize: unset;
+        &:focus + label[for="customer_message"],
+        &:active + label[for="customer_message"],
+        &:focus-within + label[for="customer_message"] {
+            display: none;
+        }
+      }
     }
   }
 }
@@ -22,6 +62,10 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+  .modal-content.chat-wrapper {
+    max-width: 350px;
+
+  }
   button.chat-initial {
     position: fixed;
     bottom: 50px;
@@ -32,6 +76,23 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
   button.chat-initial {
     margin: 0 20px;
+  }
+  .modal-content.chat-wrapper {
+    bottom: 30px;
+    width: 40%;
+    max-width: 250px;
+    min-height: 300px;
+    margin: 0 20px 0 0;
+    #chat-form {
+      .flex-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .field {
+        width: 80%;
+      }
+    }
   }
 }
 

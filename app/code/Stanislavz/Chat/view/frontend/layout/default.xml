@@ -8,5 +8,12 @@
                    template="Stanislavz_Chat::button.phtml"
             />
         </referenceContainer>
+        <referenceContainer name="footer-container">
+            <block class="Stanislavz\Chat\Block\ChatForm"
+                   name="chat.form"
+                   template="Stanislavz_Chat::chat/chat-form.phtml"
+                   after="-"
+            />
+        </referenceContainer>
     </body>
 </page>

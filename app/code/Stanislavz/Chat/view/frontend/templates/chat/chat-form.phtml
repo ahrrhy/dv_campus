@@ -1,0 +1,37 @@
+<?php /** @var \Stanislavz\Chat\Block\ChatForm $block */ ?>
+<div class="modal-content chat-wrapper"
+
+>
+    <form action="javascript:void(0)"
+          method="post"
+          class="chat-form"
+          id="chat-form"
+    >
+        <div class="flex-wrap">
+            <div class="field name required">
+                <div class="control">
+                    <textarea name="customer_message"
+                              class="textarea required text"
+                              id="customer_message"
+                    ></textarea>
+                    <label for="customer_message" class="label"><?= $block->escapeHtml(__('Question')) ?></label>
+                </div>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <input type="hidden"
+                           name="store_id"
+                           value="<?= $block->escapeHtml($block->getStoreId()) ?>"
+                    />
+                    <input type="hidden" name="hideit" id="hideit" value=""/>
+                    <button type="submit"
+                            id="message-submit"
+                            title="<?= $block->escapeHtmlAttr(__('Send')) ?>"
+                            class="action submit primary">
+                        <span><?= $block->escapeHtml(__('Send')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
