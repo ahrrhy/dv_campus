@@ -10,29 +10,33 @@
 }
 
 & when (@media-common = true) {
+  button.hidden {
+    display: none;
+  }
+
   button.chat-initial {
+    z-index: 5;
     transition: all ease .3s;
     padding: 5px;
-    display: inline-block;
     margin: 10px 0 0 20px;
     float: left;
     font-size: 1em;
     .chat-clearfix();
   }
 
-  .modal-content.chat-wrapper {
-    z-index: 3;
-    overflow-y: scroll;
+  .modal-content.chat-wrapper.modal-slide,
+  .modal-content.chat-wrapper.modal-popup {
+    z-index: 5;
     position: fixed;
+    left: unset;
+    top: unset;
     bottom: 20px;
     right: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
     padding: 10px;
-    background-color: @color-white;
-    min-height: 200px;
+    background-color: unset;
+    max-height: 250px;
     #chat-form {
+      z-index: 5;
       align-self: flex-end;
       order: 99;
       width: 100%;
@@ -78,7 +82,7 @@
     margin: 0 20px;
   }
   .modal-content.chat-wrapper {
-    bottom: 30px;
+    bottom: 100px;
     width: 40%;
     max-width: 250px;
     min-height: 300px;

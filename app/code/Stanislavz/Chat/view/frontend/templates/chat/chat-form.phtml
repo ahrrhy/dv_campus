@@ -1,16 +1,26 @@
 <?php /** @var \Stanislavz\Chat\Block\ChatForm $block */ ?>
-<div class="modal-content chat-wrapper"
-
+<div class="chat-wrapper"
+     data-mage-init='{"chatModal":{}}'
+     style="display: none"
 >
+    <div id="message-wrapper">
+        <ul class="message-list"></ul>
+    </div>
     <form action="javascript:void(0)"
           method="post"
           class="chat-form"
           id="chat-form"
+          data-mage-init='{
+            "validate": {},
+            "chatFormWidget":{
+                "action": "<?= $block->escapeUrl($block->getFormAction()) ?>"
+            }
+          }'
     >
         <div class="flex-wrap">
             <div class="field name required">
                 <div class="control">
-                    <textarea name="customer_message"
+                    <textarea name="message"
                               class="textarea required text"
                               id="customer_message"
                     ></textarea>

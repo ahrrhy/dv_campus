@@ -15,6 +15,6 @@ class ChatForm extends \Magento\Framework\View\Element\Template
      */
     public function getFormAction(): string
     {
-        return $this->getUrl('chat/index');
+        return $this->getUrl('chat/chat/index');
     }
 }

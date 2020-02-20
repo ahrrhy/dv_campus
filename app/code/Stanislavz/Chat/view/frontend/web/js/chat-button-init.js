@@ -1,7 +1,6 @@
 define([
     'jquery',
-    'jquery/ui',
-    'mage/translate'
+    'jquery/ui'
 ], function ($) {
     'use strict';
 
@@ -32,7 +31,6 @@ define([
          */
         openChat: function () {
             $(document).trigger('stanislavz_Chat_openChat');
-
             if (this.options.hideButton) {
                 $(this.element).addClass('hidden');
             }
