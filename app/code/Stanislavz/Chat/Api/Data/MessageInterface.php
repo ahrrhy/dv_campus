@@ -6,6 +6,11 @@ namespace Stanislavz\Chat\Api\Data;
 
 use Magento\Tests\NamingConvention\true\string;
 
+/**
+ * Interface MessageInterface
+ * @api
+ * @package Stanislavz\Chat\Api\Data
+ */
 interface MessageInterface
 {
     /**

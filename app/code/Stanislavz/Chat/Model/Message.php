@@ -8,6 +8,10 @@ use Stanislavz\Chat\Api\Data\MessageInterface;
 use Magento\Framework\Model\Context;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
 
+/**
+ * Class Message
+ * @package Stanislavz\Chat\Model
+ */
 class Message extends \Magento\Framework\Model\AbstractModel implements MessageInterface
 {
     /**
