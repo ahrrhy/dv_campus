@@ -40,8 +40,8 @@ define([
          * Submit request via AJAX. Add form key to the post data.
          */
         ajaxSubmit: function () {
-            var self = this;
-            var formData = new FormData($(this.element).get(0));
+            var self = this,
+                formData = new FormData($(this.element).get(0));
 
             formData.append('form_key', $.mage.cookies.get('form_key'));
             formData.append('isAjax', 1);

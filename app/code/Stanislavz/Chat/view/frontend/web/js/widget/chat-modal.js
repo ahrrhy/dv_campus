@@ -23,12 +23,10 @@ define([
                 header: '',
                 closed: function (e) {
                     $(self.options.chatModalInitButton).trigger('stanislavz_Chat_closeChat.stanislavz_Chat');
-                    self._destroy();
                 },
                 title: '',
                 buttons: []
             });
-            $(document).on('stanislavz_Chat_openChat.stanislavzChat', $.proxy(this.openModal, this));
         },
 
         /**
@@ -36,14 +34,7 @@ define([
          */
         _destroy: function () {
             $(document).off('stanislavz_Chat_openChat.stanislavzChat');
-            $(this.options.chatModalInitButton).off('stanislavz_Chat_closeChat.stanislavz_Chat');
-        },
-
-        /**
-         * Open preferences sidebar
-         */
-        openModal: function () {
-            this.modal.modal('openModal').trigger('contentUpdated');
+            this.clearMessageList();
         },
 
         /**
@@ -59,6 +50,10 @@ define([
                 .append($name)
                 .append($time);
             $(this.options.messageList).append($messageItem);
+        },
+
+        clearMessageList: function () {
+            $(this.options.messageList).empty();
         }
     });
 

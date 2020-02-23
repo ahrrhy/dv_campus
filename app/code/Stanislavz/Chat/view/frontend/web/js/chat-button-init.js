@@ -1,11 +1,14 @@
 define([
     'jquery',
+    'Stanislavz_Chat/js/widget/chat-modal',
     'jquery/ui'
-], function ($) {
+], function ($, stanislavzChatChatModal) {
     'use strict';
 
     $.widget('stanislavzChat.chatButtonInit', {
         options: {
+            chatModal: '#chat-wrapper',
+            close: '.chat-close',
             hideButton: true
         },
 
@@ -15,6 +18,7 @@ define([
         _create: function () {
             $(this.element).on('click.stanislavz_Chat', $.proxy(this.openChat, this));
             $(this.element).on('stanislavz_Chat_closeChat.stanislavz_Chat', $.proxy(this.closeChat, this));
+            $(this.options.close).on('click.stanislavz_Chat', $.proxy(this.destroyChatModal, this));
         },
 
         /**
@@ -30,9 +34,9 @@ define([
          * Open Chat Form
          */
         openChat: function () {
-            $(document).trigger('stanislavz_Chat_openChat');
+            $(this.options.chatModal).data('mage-modal').openModal();
             if (this.options.hideButton) {
-                $(this.element).addClass('hidden');
+                $(this.element).parent().addClass('hidden');
             }
         },
 
@@ -41,8 +45,13 @@ define([
          */
         closeChat: function () {
             if (this.options.hideButton) {
-                $(this.element).removeClass('hidden');
+                $(this.element).parent().removeClass('hidden');
             }
+        },
+
+        destroyChatModal: function () {
+            $(this.options.chatModal).data('stanislavzChatChatModal').destroy();
+            stanislavzChatChatModal({}, $(this.options.chatModal));
         }
     });
 

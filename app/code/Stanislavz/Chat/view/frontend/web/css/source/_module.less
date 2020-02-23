@@ -1,12 +1,11 @@
 .chat-clearfix() {
-  &:before,
-  &:after {
-    content: '';
-    display: table;
-  }
   &:after {
     clear: both;
   }
+}
+
+.hidden {
+  display: none;
 }
 
 .reset-list() {
@@ -16,18 +15,33 @@
 }
 
 & when (@media-common = true) {
-  button.hidden {
-    display: none;
+  .chat-buttons {
+    z-index: 5;
+    float: left;
+    margin-top: 10px;
+    padding: 5px;
+  }
+  button.chat-initial {
+    padding: 0;
+    transition: all ease .3s;
+    background: unset;
+    border: none;
+    border-radius: 50%;
+    box-shadow: none;
+
+    .chat-clearfix();
+
+    .svg-icon {
+      width: 2rem;
+    }
   }
 
-  button.chat-initial {
-    z-index: 5;
-    transition: all ease .3s;
-    padding: 5px;
-    margin: 10px 0 0 20px;
-    float: left;
-    font-size: 1em;
-    .chat-clearfix();
+  .chat-close {
+    display: inline-block;
+    padding: 3px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .modal-content.chat-wrapper.modal-slide,
@@ -35,8 +49,7 @@
     z-index: 5;
     position: fixed;
     left: unset;
-    top: unset;
-    bottom: 20px;
+    top: 50%;
     right: 10px;
     padding: 10px;
     background-color: unset;
@@ -99,9 +112,8 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
   .modal-content.chat-wrapper {
     max-width: 350px;
-
   }
-  button.chat-initial {
+  .chat-buttons {
     position: fixed;
     bottom: 50px;
     right: 50px;
@@ -109,15 +121,15 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-  button.chat-initial {
-    margin: 0 20px;
+  .chat-buttons {
+    margin-top: 0;
   }
+
   .modal-content.chat-wrapper {
     bottom: 100px;
     width: 40%;
-    max-width: 250px;
+    max-width: 350px;
     min-height: 300px;
-    margin: 0 20px 0 0;
     #chat-form {
       .flex-wrap {
         display: flex;
