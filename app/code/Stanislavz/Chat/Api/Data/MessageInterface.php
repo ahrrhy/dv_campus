@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Stanislavz\Chat\Api\Data;
 
-use Magento\Tests\NamingConvention\true\string;
-
 /**
  * Interface MessageInterface
  * @api
