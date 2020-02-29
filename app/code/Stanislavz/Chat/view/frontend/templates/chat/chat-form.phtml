@@ -1,11 +1,21 @@
 <?php /** @var \Stanislavz\Chat\Block\ChatForm $block */ ?>
+<?php $lastMessages = $block->getLastMessages('some_chat_hash') ?>
 <div class="chat-wrapper"
      id="chat-wrapper"
      data-mage-init='{"chatModal":{}}'
      style="display: none"
 >
     <div id="message-wrapper">
-        <ul class="message-list"></ul>
+        <ul class="message-list">
+            <?php /** @var \Stanislavz\Chat\Model\Message $message */
+            foreach ($lastMessages as $message) : ?>
+            <li class="message-item <?= $block->escapeHtmlAttr($message->getAuthorType()) ?>">
+                <p class="message"><?= $block->escapeHtml($message->getMessage()) ?></p>
+                <p class="name"><?= $block->escapeHtml($message->getAuthorName()) ?></p>
+                <p class="time"><?= $block->escapeHtml($message->getCreatedAt()) ?></p>
+            </li>
+            <?php endforeach; ?>
+        </ul>
     </div>
     <form action="javascript:void(0)"
           method="post"

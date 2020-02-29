@@ -128,7 +128,7 @@ class Message extends \Magento\Framework\Model\AbstractModel implements MessageI
      */
     public function getMessage(): ?string
     {
-        return $this->getData('author_name');
+        return $this->getData('message');
     }
 
     /**
