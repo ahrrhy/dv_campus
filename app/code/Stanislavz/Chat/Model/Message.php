@@ -7,6 +7,7 @@ namespace Stanislavz\Chat\Model;
 use Stanislavz\Chat\Api\Data\MessageInterface;
 use Magento\Framework\Model\Context;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
+use Magento\Framework\Exception\LocalizedException;
 
 /**
  * Class Message
@@ -188,5 +189,20 @@ class Message extends \Magento\Framework\Model\AbstractModel implements MessageI
     public function setCreatedAt($createdAt): MessageInterface
     {
         return $this->setData('created_at', $createdAt);
+    }
+
+    public function validate()
+    {
+        if (!$this->getAuthorId()) {
+            throw new LocalizedException(__('Can\'t save message: %s is not set.', 'author_id'));
+        }
+
+        if (!$this->getWebsiteId()) {
+            throw new LocalizedException(__('Can\'t save message: %s is not set.', 'website_id'));
+        }
+
+        if (!$this->getChatHash()) {
+            throw new LocalizedException(__('Can\'t save message: %s is not set.', 'chat_hash'));
+        }
     }
 }

@@ -17,4 +17,9 @@ class ChatForm extends \Magento\Framework\View\Element\Template
     {
         return $this->getUrl('chat/chat/index');
     }
+
+    public function getLastMessages($chatHashId)
+    {
+
+    }
 }
