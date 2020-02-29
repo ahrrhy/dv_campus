@@ -62,8 +62,10 @@ define([
                 /** @inheritdoc */
                 success: function (response) {
                     $('body').trigger('processStop');
-                    $(self.element).find('#customer_message').val('');
-                    chatModal().renderMessage(response.message);
+                    if (response.status === 'success') {
+                        $(self.element).find('#customer_message').val('');
+                        chatModal().renderMessage(response.message);
+                    }
                 },
 
                 /** @inheritdoc */

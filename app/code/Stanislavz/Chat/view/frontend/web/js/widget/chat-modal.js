@@ -42,10 +42,10 @@ define([
          */
         renderMessage: function (message) {
             var $message = $('<p>').addClass('message').text(message.message);
-            var $name = $('<p>').addClass('name').text(message.name);
-            var $time = $('<p>').addClass('time').text(message.time);
+            var $name = $('<p>').addClass('name').text(message.author_name);
+            var $time = $('<p>').addClass('time').text(message.created_at);
             var $messageItem = $('<li>').addClass('message-item');
-            $messageItem.addClass(message.role);
+            $messageItem.addClass(message.author_type);
             $messageItem.append($message)
                 .append($name)
                 .append($time);
