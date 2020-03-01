@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 namespace Stanislavz\Chat\Controller\Chat;
 
+use Stanislavz\Chat\Model\ChatHashModel;
 use Stanislavz\Chat\Model\MessageFactory as MessageFactory;
 use Stanislavz\Chat\Model\ResourceModel\Message\CollectionFactory as MessageCollectionFactory;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\DB\Transaction;
 
 class Index extends \Magento\Framework\App\Action\Action implements HttpPostActionInterface
 {
+    /**
+     * @var \Stanislavz\Chat\Model\ChatHashModel
+     */
+    private $chatHashModel;
+
     /**
      * @var JsonFactory
      */
@@ -55,6 +60,7 @@ class Index extends \Magento\Framework\App\Action\Action implements HttpPostActi
 
     /**
      * Index constructor.
+     * @param ChatHashModel $chatHashModel
      * @param \Magento\Framework\Stdlib\DateTime\DateTime $date
      * @param \Magento\Framework\DB\TransactionFactory $transactionFactory
      * @param MessageFactory $messageFactory
@@ -66,6 +72,7 @@ class Index extends \Magento\Framework\App\Action\Action implements HttpPostActi
      * @param \Magento\Framework\App\Action\Context $context
      */
     public function __construct(
+        \Stanislavz\Chat\Model\ChatHashModel $chatHashModel,
         \Magento\Framework\Stdlib\DateTime\DateTime $date,
         \Magento\Framework\DB\TransactionFactory $transactionFactory,
         \Stanislavz\Chat\Model\MessageFactory $messageFactory,
@@ -77,6 +84,7 @@ class Index extends \Magento\Framework\App\Action\Action implements HttpPostActi
         \Magento\Framework\App\Action\Context $context
     ) {
         parent::__construct($context);
+        $this->chatHashModel = $chatHashModel;
         $this->messageFactory = $messageFactory;
         $this->messageCollectionFactory = $messageCollectionFactory;
         $this->transactionFactory = $transactionFactory;
@@ -96,9 +104,7 @@ class Index extends \Magento\Framework\App\Action\Action implements HttpPostActi
             $requestParams = $this->validateRequest();
             // mock the data we don't have yet
             $requestParams = $this->setSenderName($requestParams);
-            $requestParams = $this->setSenderRole($requestParams);
             $requestParams = $this->setSenderId($requestParams);
-            $requestParams = $this->setChatHash($requestParams);
             $requestParams = $this->setCurrentTime($requestParams);
             // mock the data we don't have yet
 
@@ -130,6 +136,10 @@ class Index extends \Magento\Framework\App\Action\Action implements HttpPostActi
     private function validateRequest(): array
     {
         $request = $this->getRequest();
+
+        if (!$this->formKeyValidator->validate($request)) {
+            throw new LocalizedException(__('Something went wrong, please reload page'));
+        }
         if (trim($request->getParam('message')) === '') {
             throw new LocalizedException(__('Enter the First Name and try again.'));
         }
@@ -149,33 +159,17 @@ class Index extends \Magento\Framework\App\Action\Action implements HttpPostActi
      */
     private function setSenderName(array $requestParams): array
     {
-        $requestParams['author_name'] = 'someName';
+        $requestParams['author_name'] = $this->chatHashModel->getCustomerName();
         return $requestParams;
     }
 
+    /**
+     * @param array $requestParams
+     * @return array
+     */
     private function setSenderId(array $requestParams): array
     {
-        $requestParams['author_id'] = 12;
-        return $requestParams;
-    }
-
-    /**
-     * @param array $requestParams
-     * @return array
-     */
-    private function setSenderRole(array $requestParams): array
-    {
-        $requestParams['author_type'] = 'customer';
-        return $requestParams;
-    }
-
-    /**
-     * @param array $requestParams
-     * @return array
-     */
-    private function setChatHash(array $requestParams): array
-    {
-        $requestParams['chat_hash'] = 'some_chat_hash';
+        $requestParams['author_id'] = $this->chatHashModel->getCustomerId();
         return $requestParams;
     }
 

@@ -1,5 +1,5 @@
 <?php /** @var \Stanislavz\Chat\Block\ChatForm $block */ ?>
-<?php $lastMessages = $block->getLastMessages('some_chat_hash') ?>
+<?php $lastMessages = $block->getLastMessages() ?>
 <div class="chat-wrapper"
      id="chat-wrapper"
      data-mage-init='{"chatModal":{}}'
@@ -41,6 +41,12 @@
             <div class="actions-toolbar">
                 <div class="primary">
                     <input type="hidden" name="hideit" id="hideit" value=""/>
+                    <input type="hidden" name="author_type" id="author_type" value="customer"/>
+                    <input type="hidden"
+                           name="chat_hash"
+                           id="chat_hash"
+                           value="<?= $block->escapeHtmlAttr($block->getChatHashCookie()) ?>"
+                    />
                     <button type="submit"
                             id="message-submit"
                             title="<?= $block->escapeHtmlAttr(__('Send')) ?>"

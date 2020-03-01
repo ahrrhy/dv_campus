@@ -193,8 +193,8 @@ class Message extends \Magento\Framework\Model\AbstractModel implements MessageI
 
     public function validate()
     {
-        if (!$this->getAuthorId()) {
-            throw new LocalizedException(__('Can\'t save message: %s is not set.', 'author_id'));
+        if (!$this->getMessage()) {
+            throw new LocalizedException(__('Can\'t save message: %s is not set.', 'message'));
         }
 
         if (!$this->getWebsiteId()) {
