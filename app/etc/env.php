@@ -47,7 +47,7 @@ return [
                 'first_lifetime' => '600',
                 'bot_first_lifetime' => '60',
                 'bot_lifetime' => '7200',
-                'disable_locking' => '0',
+                'disable_locking' => '1',
                 'min_lifetime' => '60',
                 'max_lifetime' => '2592000'
             ]
